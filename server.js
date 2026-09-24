@@ -8,7 +8,11 @@
 // i the api we that are provided to us allows use interact data and the web service , which is so important and cannot be used without about it 
 // for and learnt how to debug without ai or llm avaible to us , and how to write reusable code and been able to interprete wuat a line of code does 
 // i leanrt schema for databases 
+//Now i can build CRUD APIs , and learnt https code message  and connection pooling 
 
+//TIMELINES 
+//DAY1:Internet & HTTP Fundamentals: You learned HTTP methods (GET, POST, PUT, DELETE), headers (Content-Type: application/json), and status codes (200, 201, 400, 404).   Programming Language: Node.js & JavaScript.   APIs & Web Servers: Express server routing, request params (req.params), and body parsing (req.body).
+//DAY2:Databases & Data Modeling
 
 const express = require('express');
 const prisma = require('./db');
