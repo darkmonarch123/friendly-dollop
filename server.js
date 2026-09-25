@@ -13,9 +13,14 @@
 //TIMELINES 
 //DAY1:Internet & HTTP Fundamentals: You learned HTTP methods (GET, POST, PUT, DELETE), headers (Content-Type: application/json), and status codes (200, 201, 400, 404).   Programming Language: Node.js & JavaScript.   APIs & Web Servers: Express server routing, request params (req.params), and body parsing (req.body).
 //DAY2:Databases & Data Modeling
+//DAY3: Week 3: Middleware & Authentication (JWT)
 
+//for Day 3 we are going to learn about middleware and authentication using JWT (JSON Web Tokens). Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. They can execute code, make changes to the request and response objects, end the request-response cycle, and call the next middleware function. Authentication is the process of verifying the identity of a user or system. JWT is a compact, URL-safe means of representing claims to be transferred between two parties. It allows for secure transmission of information as a JSON object.
+//i am building a middleware auth using auth.js
+require('dotenv').config();
 const express = require('express');
 const prisma = require('./db');
+const authRoutes = require('./auth')
 const app = express();
 const port = 3030;
 
@@ -29,6 +34,12 @@ let tasks = [
     { id: 2, title: "Learn Express", completed: true }
 ];
 
+app.use((req,res, next)=>{
+    console.log(`[${new Date().toISOString()} ${res.method} ${req.url}]`);
+    next();
+})
+
+app.use('/api/auth', authRoutes);
 // 2. Routes
 
 // Get all tasks
@@ -37,6 +48,7 @@ app.get('/api/tasks', async (req, res) => {
     const tasks = await prisma.task.findMany();
     return res.status(200).json(tasks)
    }catch(error){
+    console.error('SERVER ERROR:', error)
     return res.status(500).json({message:"Internal server error"})
    }
 });
@@ -54,6 +66,7 @@ app.get('/api/tasks/:id', async (req, res) => {
         }
         return res.status(200).json(task)
     }catch(error){
+        console.error('SERVER ERROR:', error)
         return res.status(500).json({message:"Internal server error"})
     }
 });
@@ -72,6 +85,7 @@ app.post('/api/tasks',async (req, res) => {
         })
           return res.status(201).json(newTask)
     }catch(error){
+        console.error('SERVER ERROR:', error);
         return res.status(500).json({message:"Internal server error"})
     }
 });
@@ -89,6 +103,7 @@ app.delete('/api/tasks/:id', async (req, res) => {
 
         return res.status(200).json({message:"Task deleted successfully"})
     }catch(error){
+        console.error('SERVER ERROR:', error);
         return res.status(500).json({message:"Failed to delete task"})
     }
 });
@@ -117,6 +132,7 @@ app.put('/api/tasks/:id', async (req,res)=>{
         const UpdateTask = await prisma.task.update({where:{id:taksId}, data:UpdateData});
         return res.status(200).json(UpdateTask);
     }catch(error){
+        console.error('SERVER ERROR:', error);
         return res.status(500).json({message:"Failed to update task"})
     }
 })

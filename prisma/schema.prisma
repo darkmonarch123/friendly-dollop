@@ -12,4 +12,14 @@ model Task{
     title      String    
     completed  Boolean  @default(false)
     createdAt  DateTime @default(now())
+    userId     Int 
+    user       User     @relation(fields:[userId],references :[id]) 
+}
+
+model User{
+    id        Int     @id @default(autoincrement())
+    email     String 
+    password  String 
+    createdAt DateTime   @default(now())
+    tasks     Task[]
 }
