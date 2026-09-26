@@ -17,6 +17,8 @@
 
 //for Day 3 we are going to learn about middleware and authentication using JWT (JSON Web Tokens). Middleware functions are functions that have access to the request object (req), the response object (res), and the next middleware function in the application’s request-response cycle. They can execute code, make changes to the request and response objects, end the request-response cycle, and call the next middleware function. Authentication is the process of verifying the identity of a user or system. JWT is a compact, URL-safe means of representing claims to be transferred between two parties. It allows for secure transmission of information as a JSON object.
 //i am building a middleware auth using auth.js
+// Together i route my api for jwt but i encoutered some setbacks for db connect but i wired my api for auth so that some progress today , you see tomorrow!!!  SYWISU  
+//day4: stilll on the jwt auth for the task mangager api i encountered some bugs which involved the database schema
 require('dotenv').config();
 const express = require('express');
 const prisma = require('./db');

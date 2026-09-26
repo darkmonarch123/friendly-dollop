@@ -112,6 +112,16 @@ The server runs on **`http://localhost:3030`** by default.
 | `PUT`  | `/api/tasks/:id`| Update an existing task| `{ "title": "String", "completed": Boolean }` | `200 OK` |
 | `DELETE`| `/api/tasks/:id`| Delete a task by ID   | *None*                           | `200 OK`       |
 
+### **User Resource** (`/api/tasks/auth`)
+ Method | Endpoint        | Description           | Request Body (JSON)              | Success Status |
+| :----- | :-------------- | :-------------------- | :------------------------------- | :------------- |
+| `POST`  | `/api/tasks/register`    | Get        | *None*                           | `200 OK`       |
+| `GET`  | `/api/tasks/:id`| Get a task by ID      | *None*                           | `200 OK`       |
+| `POST` | `/api/tasks`    | Create a new task     | `{ "title": "String" }`          | `201 Created`  |
+| `PUT`  | `/api/tasks/:id`| Update an existing task| `{ "title": "String", "completed": Boolean }` | `200 OK` |
+| `DELETE`| `/api/tasks/:id`| Delete a task by ID   | *None*                           | `200 OK`      
+
+
 ---
 
 ## 🛡️ Input Validation & Guard Rails

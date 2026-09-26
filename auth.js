@@ -1,5 +1,6 @@
 const express = require('express');
 const prisma = require('./db');
+const bcrypt = require('bcryptjs')
 const app = express();
 const port = 3030;
 const router = express.Router()
